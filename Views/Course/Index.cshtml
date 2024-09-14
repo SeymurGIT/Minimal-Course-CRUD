@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Course>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	int count = 1;
+}
+<h1>Kurslar Listi</h1>
+<hr />
+
+<a style="height:30px" href="/Course/Create/" class="btn btn-sm btn-dark btn-cr mt-3">Yarat</a>
+
+<br />
+<br />
+
+<table class="table table-bordered">
+
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Kurs Id</th>
+			<th>Kurs Başlığı</th>
+			<th>Təlimçi</th>
+			<th>Əməliyyatlar</th>
+
+		</tr>
+
+	</thead>
+
+	<tbody>
+
+		@if (!Model.Any())
+		{
+			<tr>
+				<td colspan="5" class="text-center">Heç bir məlumat yoxdur</td>
+			</tr>
+		}
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td style="color:lightslategray">@count</td>
+				<td>@item.CourseId</td>
+				<td>@item.Title</td>
+				<td>@(item.Instructor?.FullName)</td>
+
+				<td>
+					@Html.ActionLink("Yenilə", "Update", "Course", new { id = item.CourseId }, new { @class = "btn btn-sm btn-primary d-inline" })
+
+
+					<form asp-action="Delete" method="post" class="d-inline" onsubmit="return confirm('Silmək istədiyinizə əminsiniz?')">
+						<input type="hidden" name="CourseId" value="@item.CourseId" />
+						<input type="hidden" name="CourseName" value="@item.Title" />
+						<button type="submit" class="btn btn-sm btn-danger">Sil</button>
+					</form>
+				</td>
+			</tr>
+			count++;
+		}
+
+	</tbody>
+</table>
+
+
+

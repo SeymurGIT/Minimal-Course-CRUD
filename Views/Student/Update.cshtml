@@ -1,0 +1,56 @@
+﻿@model UpdateStudentViewModel
+@{
+	ViewData["Title"] = "Update";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="mt-5">Şagird</h1>
+
+
+<div class="row mt-5">
+	<div class="col-8">
+
+<form method="post">
+	<input type="hidden" asp-for="StudentId"/>
+	<div class="mb-3">
+		<label asp-for="StudentName" class="form-label">Salam2</label>
+		<input asp-for="StudentName" class="form-control" />
+		<span asp-validation-for="StudentName" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="StudentSurname" class="form-label"></label>
+		<input asp-for="StudentSurname" class="form-control" />
+		<span asp-validation-for="StudentSurname" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Email" class="form-label"></label>
+		<input asp-for="Email" class="form-control" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="PhoneNumber" class="form-label"></label>
+		<input asp-for="PhoneNumber" class="form-control" />
+		<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+	</div>
+
+	<br />
+	<div class="mb-3">
+		<input type="submit" value="Şagird məlumatlarını yenilə" class="btn btn-secondary" />
+	</div>
+</form>
+	</div>
+
+	<div class="col-4">
+		<h2>Kurslar</h2>
+		<hr />
+		<ul>
+			@foreach(var item in Model.CourseRegisters)
+			{
+				<li>@item.Course.Title</li>
+			}
+		</ul>
+	</div>
+</div>
+

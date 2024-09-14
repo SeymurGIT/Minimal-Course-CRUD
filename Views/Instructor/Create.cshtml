@@ -1,0 +1,45 @@
+﻿@model Instructor 
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Təlimçi Əlavə Etmək </h1>
+
+<hr />
+<form method="post">
+	<div class="mb-3">
+		<label class="form-label">Təlimçi Adı</label>
+		<input asp-for="InstructorName" class="form-control" />
+		<span asp-validation-for="InstructorName" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">Təlimçi Soyadı</label>
+		<input asp-for="InstructorSurname" class="form-control" />
+		<span asp-validation-for="InstructorSurname" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">Elektron ünvanı</label>
+		<input type="email" asp-for="Email" class="form-control" />
+		<span asp-validation-for="InstructorSurname" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">Əlaqə nömrəsi</label>
+		<input type="tel" asp-for="PhoneNumber" class="form-control" />
+		<span asp-validation-for="InstructorSurname" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">İşə alınma tarixi</label>
+		<input type="date" asp-for="HireDate" class="form-control" />
+		<span asp-validation-for="HireDate" class="text-danger"></span>
+	</div>
+
+	<br />
+	<div class="mb-3">
+		<input type="submit" value="Təlimçi əlavə et" class="btn btn-secondary" />
+	</div>
+</form>
+

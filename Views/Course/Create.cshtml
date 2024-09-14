@@ -1,0 +1,61 @@
+﻿@model Course
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kurs</h1>
+<hr />
+
+<form method="post">
+	<div class="mb-3">
+		<label class="form-label">Kurs başlığı</label>
+		<input asp-for="Title" class="form-control" />
+		<span asp-validation-for="Title" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">Təlimçilər</label>
+		<select id="courseSelect" class="form-control" asp-for="InstructorId" asp-items="@ViewBag.Instructors">
+			<option value="0">Təlimçi seçin...</option>
+		</select>
+		<span asp-validation-for="InstructorId" class="text-danger"></span>
+	</div>
+
+	<div asp-validation-summary="ModelOnly" class="text-danger" id="validationSummary"></div>
+
+	<div class="mb-3">
+		<!-- Hidden input ensures value is sent even when checkbox is unchecked -->
+		<input type="hidden" name="leaveEmptyCheckbox" id="leaveEmptyCheckboxHidden" value="false" />
+		<input type="checkbox" id="leaveEmptyCheckbox" name="leaveEmptyCheckbox" value="true" />
+		<label for="leaveEmptyCheckbox">Hələlik boş burax</label>
+	</div>
+
+	<div class="mb-3">
+		<input type="submit" value="Kurs əlavə et" class="btn btn-secondary" />
+	</div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#leaveEmptyCheckbox').change(function () {
+			const isChecked = $(this).is(':checked');
+			const selectElement = $('#courseSelect');
+			const validationSummary = $('#validationSummary');
+			const leaveEmptyCheckboxHidden = $('#leaveEmptyCheckboxHidden');
+
+			if (isChecked) {
+				selectElement.prop('disabled', true);  // Disable select element
+				leaveEmptyCheckboxHidden.val('true'); // Set hidden input to true
+				validationSummary.empty(); // Clear validation summary
+				selectElement.removeAttr('name'); // Remove name to avoid posting data
+			} else {
+				selectElement.prop('disabled', false); // Enable select element
+				leaveEmptyCheckboxHidden.val('false'); // Set hidden input to false
+				selectElement.attr('name', 'InstructorId'); // Restore name
+				validationSummary.html('<ul><li>Xahiş edirik, təlimçi seçin.</li></ul>');
+			}
+		});
+	});
+</script>

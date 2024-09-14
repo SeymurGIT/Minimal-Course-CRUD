@@ -1,0 +1,61 @@
+﻿@model UpdateInstructorViewModel
+@{
+	ViewData["Title"] = "Update";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mt-5">Təlimçi</h1>
+<div class="row mt-5">
+	<div class="col-8">
+		<form method="post">
+			<input type="hidden" asp-for="InstructorId" />
+			<div class="mb-3">
+				<label asp-for="InstructorName" class="form-label">Təlimçi Adı</label>
+				<input asp-for="InstructorName" class="form-control" />
+				<span asp-validation-for="InstructorName" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Təlimçi Soyadı</label>
+				<input asp-for="InstructorSurname" class="form-control" />
+				<span asp-validation-for="InstructorSurname" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Elektron ünvan</label>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Telefon nömrəsi</label>
+				<input asp-for="PhoneNumber" class="form-control" />
+				<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">İşə başlama tarixi</label>
+				<input asp-for="HireDate" class="form-control" />
+				<span asp-validation-for="HireDate" class="text-danger"></span>
+			</div>
+
+			<br />
+			<div class="mb-3">
+				<input type="submit" value="Təlimçi məlumatlarını yenilə" class="btn btn-secondary" />
+			</div>
+		</form>
+	</div>
+
+	@*<div class="col-4">
+		<h2>Kurslar</h2>
+		<hr />
+		<ul>
+			@foreach (var item in Model.CourseRegisters)
+			{
+				<li>@item.Course.Title</li>
+			}
+		</ul>
+	</div>*@
+</div>
+
+

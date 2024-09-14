@@ -1,0 +1,35 @@
+﻿@model CourseRegistration
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Tələbə Kurs Qeydiyyatı </h1>
+
+<hr />
+<form method="post">
+	<div class="mb-3">
+		<label class="form-label">Tələbə</label>
+
+		<select class="form-control" asp-for="StudentId" asp-items="ViewBag.Students">
+			<option value="">Şagird seçin...</option>
+		</select>
+		<br />
+
+	</div>
+
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="mb-3">
+		<label class="form-label">Kurs</label>
+		@Html.DropDownListFor(d => d.CourseId, (IEnumerable<SelectListItem>)ViewBag.Courses, new { @class = "form-control" })
+
+
+	</div>
+
+	<br />
+	<div class="mb-3">
+		<input type="submit" value="Tamamla" class="btn btn-secondary" />
+	</div>
+</form>
+
+

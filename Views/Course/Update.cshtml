@@ -1,0 +1,48 @@
+﻿@model UpdateCourseViewModel
+@{
+	ViewData["Title"] = "Update";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="mt-5">Kurs</h1>
+
+<div class="row mt-5">
+	<div class="col-8">
+		<form asp-controller="Course" asp-action="Update" method="post">
+			<input type="hidden" asp-for="CourseId" />
+			<div class="mb-3">
+				<label class="form-label">Kurs başlığı</label>
+				<input asp-for="Title" class="form-control" />
+				<span asp-validation-for="Title" class="text-danger"></span>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Təlimçilər</label>
+				<select class="form-select" asp-for="InstructorId" asp-items="@ViewBag.Instructors">
+					<option value="">Təlimçi seçin...</option>
+				</select>
+			</div>
+
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<br />
+			<div class="mb-3">
+				<input type="submit" value="Kurs məlumatlarını yenilə" class="btn btn-secondary" />
+			</div>
+		</form>
+	</div>
+
+	<div class="col-4">
+		<h2>Şagirdlər</h2>
+		<hr />
+
+		<ul>
+			@foreach (var item in Model.CourseRegisters)
+			{
+				<li>@item.Student.FullName</li>
+			}
+		</ul>
+		
+	</div>
+</div>
+
+
